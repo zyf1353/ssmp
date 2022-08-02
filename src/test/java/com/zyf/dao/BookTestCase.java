@@ -1,5 +1,6 @@
 package com.zyf.dao;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zyf.domain.Book;
@@ -49,5 +50,12 @@ public class BookTestCase {
     void testGetPage(){
         IPage page = new Page(1,5);
         bookDao.selectPage(page,null);
+    }
+
+    @Test
+    void testGetBy(){
+        QueryWrapper<Book> qw = new QueryWrapper<>();
+        qw.like("name","c");
+        bookDao.selectList(qw);
     }
 }
