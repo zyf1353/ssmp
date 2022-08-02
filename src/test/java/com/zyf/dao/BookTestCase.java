@@ -1,5 +1,6 @@
 package com.zyf.dao;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -57,5 +58,12 @@ public class BookTestCase {
         QueryWrapper<Book> qw = new QueryWrapper<>();
         qw.like("name","c");
         bookDao.selectList(qw);
+    }
+
+    @Test
+    void testGetBy2(){
+        LambdaQueryWrapper<Book> qw2 = new LambdaQueryWrapper<>();
+        qw2.like(Book::getName,"c");
+        bookDao.selectList(qw2);
     }
 }
