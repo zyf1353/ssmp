@@ -1,5 +1,7 @@
 package com.zyf.dao;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zyf.domain.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +43,11 @@ public class BookTestCase {
     @Test
     void testGetAll(){
         System.out.println(bookDao.selectList(null));
+    }
+
+    @Test
+    void testGetPage(){
+        IPage page = new Page(1,5);
+        bookDao.selectPage(page,null);
     }
 }
