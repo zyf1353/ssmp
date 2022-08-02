@@ -8,7 +8,7 @@
         <version>2.7.2</version>
     </parent>
 
-    <groupId>com.zyf</groupId>
+    <groupId>com.zyfl</groupId>
     <artifactId>springboot_ssmp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
