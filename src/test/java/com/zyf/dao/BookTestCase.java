@@ -40,6 +40,6 @@ public class BookTestCase {
     }
     @Test
     void testGetAll(){
-        bookDao.selectList(null);
+        System.out.println(bookDao.selectList(null));
     }
 }
