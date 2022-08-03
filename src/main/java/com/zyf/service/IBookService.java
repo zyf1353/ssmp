@@ -8,5 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface IBookService extends IService<Book> {
 
     IPage<Book> getPage(int currentPAge, int pageSize);
+    IPage<Book> getPage(int currentPAge, int pageSize, Book book);
 
 }
