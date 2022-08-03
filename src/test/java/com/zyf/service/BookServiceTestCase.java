@@ -35,12 +35,12 @@ public class BookServiceTestCase {
         book.setId(1);
         book.setType("aaa");
         book.setName("bbb");
-        book.setDescription("ccc");
+        book.setDescription("ccdc");
         iBookService.updateById(book);
     }
     @Test
     void testDelete(){
-        iBookService.removeById(3);
+        iBookService.removeById(4);
     }
     @Test
     void testGetAll(){
