@@ -1,13 +1,10 @@
 package com.zyf.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zyf.domain.Book;
 import com.zyf.service.IBookService;
-import com.zyf.utils.R;
+import com.zyf.controller.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/books")
@@ -23,7 +20,8 @@ public class BookController2 {
 
     @PostMapping()
     public R save(@RequestBody Book book){
-        return new R(ibookService.save(book));
+        Boolean flag = ibookService.save(book);
+        return new R(flag, flag ? "添加成功" : "添加失败");
     }
 
     @PutMapping()
