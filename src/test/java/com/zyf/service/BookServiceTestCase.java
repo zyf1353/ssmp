@@ -1,5 +1,10 @@
 package com.zyf.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zyf.domain.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,10 +13,57 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class BookServiceTestCase {
 
     @Autowired
-    private BookService bookService;
+    private IBookService iBookService;
 
     @Test
     void testGetById(){
-        System.out.println(bookService.getById(2));
+        System.out.println(iBookService.getById(1));
+    }
+
+    @Test
+    void testSave(){
+        Book book = new Book();
+        book.setType("aaa");
+        book.setName("bbb");
+        book.setDescription("ccc");
+        iBookService.save(book);
+    }
+
+    @Test
+    void testUpdate(){
+        Book book = new Book();
+        book.setId(1);
+        book.setType("aaa");
+        book.setName("bbb");
+        book.setDescription("ccc");
+        iBookService.updateById(book);
+    }
+    @Test
+    void testDelete(){
+        iBookService.removeById(3);
+    }
+    @Test
+    void testGetAll(){
+        System.out.println(iBookService.list(null));
+    }
+
+    @Test
+    void testGetPage(){
+        IPage<Book> page = new Page<Book>(2,5);
+        iBookService.page(page,null);
+    }
+
+    @Test
+    void testGetBy(){
+        QueryWrapper<Book> qw = new QueryWrapper<>();
+        qw.like("name","c");
+        iBookService.list(qw);
+    }
+
+    @Test
+    void testGetBy2(){
+        LambdaQueryWrapper<Book> qw2 = new LambdaQueryWrapper<>();
+        qw2.like(Book::getName,"c");
+        iBookService.list(qw2);
     }
 }
