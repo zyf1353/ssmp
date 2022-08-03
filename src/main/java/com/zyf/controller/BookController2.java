@@ -1,5 +1,6 @@
 package com.zyf.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zyf.domain.Book;
 import com.zyf.service.IBookService;
 import com.zyf.controller.utils.R;
@@ -41,7 +42,10 @@ public class BookController2 {
 
     @GetMapping("{currentPAge}/{pageSize}")
     public R getPage(@PathVariable int currentPAge, @PathVariable int pageSize){
-        return new R(true,ibookService.getPage(currentPAge,pageSize));
+        IPage<Book> page = ibookService.getPage(currentPAge,pageSize);
+        if( currentPAge > page.getPages())
+            page = ibookService.getPage((int)page.getPages(),pageSize);
+        return new R(true, page);
     }
 
 }
